@@ -56,3 +56,8 @@ questions.depression.forEach((question, index) => {
     depressionQuestionsDiv.appendChild(createQuestion(question, 'depression', index));
 });
 
+
+questions.anxiety.forEach((question, index) => {
+    anxietyQuestionsDiv.appendChild(createQuestion(question, 'anxiety', index));
+});
+
