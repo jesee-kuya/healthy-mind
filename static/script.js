@@ -29,3 +29,25 @@ const resultsDiv = document.getElementById('results');
 const contactFormDiv = document.getElementById('contact-form');
 const submitContactButton = document.getElementById('submit-contact');
 
+function createQuestion(questionText, questionType, questionIndex) {
+    const questionDiv = document.createElement('div');
+    questionDiv.classList.add('question');
+
+    const label = document.createElement('label');
+    label.textContent = questionText;
+    questionDiv.appendChild(label);
+
+    const optionsDiv = document.createElement('div');
+    optionsDiv.classList.add('options');
+
+    for (let i = 0; i <= 3; i++) {
+        const optionLabel = document.createElement('label');
+        optionLabel.innerHTML = `
+            <input type="radio" name="${questionType}-${questionIndex}" value="${i}" required> ${i === 0 ? 'Not at all' : i === 1 ? 'Several days' : i === 2 ? 'More than half the days' : 'Nearly every day'}
+        `;
+        optionsDiv.appendChild(optionLabel);
+    }
+
+    questionDiv.appendChild(optionsDiv);
+    return questionDiv;
+}
