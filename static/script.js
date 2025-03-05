@@ -130,7 +130,7 @@ submitContactButton.addEventListener('click', function () {
     sendEmail(emailBody);
 });
 
-function sendEmail(body) {
+export function sendEmail(body) {
     fetch('https://api.emailjs.com/api/v1.0/email/send', {
             method: 'POST',
             body: JSON.stringify({
