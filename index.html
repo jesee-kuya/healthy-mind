@@ -1,0 +1,42 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mental Health Analysis Form</title>
+    <link rel="stylesheet" href="static/styles.css">
+</head>
+
+<body>
+    <div id="form-container">
+        <h1>Mental Health Analysis Form</h1>
+        <form id="mental-health-form">
+            <h2>Depression Assessment</h2>
+            <div id="depression-questions">
+                <!-- Depression questions will be added here -->
+            </div>
+
+            <h2>Anxiety Assessment</h2>
+            <div id="anxiety-questions">
+                <!-- Anxiety questions will be added here -->
+            </div>
+
+            <button type="submit">Submit</button>
+        </form>
+
+        <div id="results" style="display: none;">
+            <h2>Results</h2>
+            <p id="depression-score"></p>
+            <p id="anxiety-score"></p>
+        </div>
+
+        <div id="contact-form" style="display: none;">
+            <h2>Optional: Share Your Contact Details</h2>
+            <input type="text" id="name" placeholder="Your Name">
+            <input type="email" id="email" placeholder="Your Email">
+            <textarea id="message" placeholder="Additional Notes"></textarea>
+            <button id="submit-contact">Submit Contact Details</button>
+        </div>
+    </div>
+</body>
+</html>
