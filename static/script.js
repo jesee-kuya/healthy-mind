@@ -91,3 +91,18 @@ mentalHealthForm.addEventListener('submit', function (event) {
     window.location.href = 'results.html';
 });
 
+function getDepressionSeverity(score) {
+    if (score >= 0 && score <= 4) return "Minimal depression";
+    if (score >= 5 && score <= 9) return "Mild depression";
+    if (score >= 10 && score <= 14) return "Moderate depression";
+    if (score >= 15 && score <= 19) return "Moderately severe depression";
+    return "Severe depression";
+}
+
+function getAnxietySeverity(score) {
+    if (score >= 0 && score <= 4) return "Minimal anxiety";
+    if (score >= 5 && score <= 9) return "Mild anxiety";
+    if (score >= 10 && score <= 14) return "Moderate anxiety";
+    return "Severe anxiety";
+}
+
