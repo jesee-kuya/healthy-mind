@@ -51,3 +51,8 @@ function createQuestion(questionText, questionType, questionIndex) {
     questionDiv.appendChild(optionsDiv);
     return questionDiv;
 }
+
+questions.depression.forEach((question, index) => {
+    depressionQuestionsDiv.appendChild(createQuestion(question, 'depression', index));
+});
+
