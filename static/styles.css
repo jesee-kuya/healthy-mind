@@ -1,0 +1,174 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to right, #e6f7ff, #cceeff);
+    color: #343a40;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+#form-container {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    width: 85%;
+    max-width: 900px;
+}
+
+h1 {
+    color: #007bff;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2.5em;
+}
+
+h2 {
+    color: #28a745;
+    margin-top: 35px;
+    margin-bottom: 20px;
+    font-size: 1.8em;
+}
+
+.question {
+    margin-bottom: 25px;
+}
+
+.question label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #495057;
+}
+
+.options {
+    display: flex;
+    gap: 20px;
+    justify-content: space-around;
+    /* Distribute options evenly */
+}
+
+.options label {
+    display: block;
+    text-align: center;
+    cursor: pointer;
+    /* Make labels clickable */
+}
+
+input[type="radio"] {
+    margin-bottom: 8px;
+    margin-right: 5px;
+    /* Space between radio and label */
+    transform: scale(1.2);
+    /* Increase size for better visibility */
+}
+
+button {
+    background-color: #28a745;
+    color: #fff;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.2em;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: block;
+    margin: 40px auto;
+}
+
+button:hover {
+    background-color: #218838;
+    transform: translateY(-2px);
+}
+
+#results {
+    margin-top: 40px;
+    padding: 30px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    border: 2px solid #d1e7dd;
+}
+
+#results h2 {
+    color: #28a745;
+}
+
+#contact-form {
+    margin-top: 40px;
+    text-align: center;
+}
+
+#contact-form input,
+#contact-form textarea {
+    display: block;
+    margin: 15px auto;
+    width: 75%;
+    padding: 12px;
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+    font-size: 1em;
+}
+
+#contact-form button {
+    margin-top: 25px;
+    background-color: #007bff;
+    color: #fff;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.2em;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: block;
+    margin: 40px auto;
+}
+
+#contact-form button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+#results-container {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    width: 85%;
+    max-width: 900px;
+    text-align: center;
+}
+
+p {
+    font-size: 1.2em;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    #form-container {
+        width: 95%;
+        padding: 30px;
+    }
+
+    .options {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .options label {
+        text-align: left;
+    }
+
+    #contact-form input,
+    #contact-form textarea {
+        width: 90%;
+    }
+}
