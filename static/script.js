@@ -61,3 +61,33 @@ questions.anxiety.forEach((question, index) => {
     anxietyQuestionsDiv.appendChild(createQuestion(question, 'anxiety', index));
 });
 
+mentalHealthForm.addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    let depressionScore = 0;
+    let anxietyScore = 0;
+
+    // Calculate depression score
+    for (let i = 0; i < questions.depression.length; i++) {
+        depressionScore += parseInt(document.querySelector(`input[name="depression-${i}"]:checked`).value);
+    }
+
+    // Calculate anxiety score
+    for (let i = 0; i < questions.anxiety.length; i++) {
+        anxietyScore += parseInt(document.querySelector(`input[name="anxiety-${i}"]:checked`).value);
+    }
+
+    const depressionSeverity = getDepressionSeverity(depressionScore);
+    const anxietySeverity = getAnxietySeverity(anxietyScore);
+
+
+    // Store results and contact info in local storage
+    localStorage.setItem('depressionScore', depressionScore);
+    localStorage.setItem('depressionSeverity', depressionSeverity);
+    localStorage.setItem('anxietyScore', anxietyScore);
+    localStorage.setItem('anxietySeverity', anxietySeverity);
+
+    // Redirect to results page
+    window.location.href = 'results.html';
+});
+
