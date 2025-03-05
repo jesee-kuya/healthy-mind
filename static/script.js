@@ -130,7 +130,24 @@ submitContactButton.addEventListener('click', function () {
     sendEmail(emailBody);
 });
 
-
-
-
-
+function sendEmail(body) {
+    fetch('https://api.emailjs.com/api/v1.0/email/send', {
+            method: 'POST',
+            body: JSON.stringify({
+                service_id: 'service_gvdt6vh',
+                template_id: 'template_m5x8t4q',
+                user_id: 'p_i3gJ9EuQtqhez8b',
+                template_params: {
+                    'from_name': 'jackson@gmail.com',
+                    'to_name': 'jkuya@gmail.com',
+                    'message': body,
+                    'reply_to': 'jackson@gmail.com'
+                }
+            }),
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            },
+        })
+        .then((response) => response.json())
+        .then((json) => console.log(json));
+}
