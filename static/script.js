@@ -138,10 +138,10 @@ function sendEmail(body) {
                 template_id: 'template_m5x8t4q',
                 user_id: 'p_i3gJ9EuQtqhez8b',
                 template_params: {
-                    'from_name': 'jackson@gmail.com',
-                    'to_name': 'jkuya@gmail.com',
+                    'from_name': 'jacksonkuya71@gmail.com',
+                    'to_name': 'kuyajesee@gmail.com',
                     'message': body,
-                    'reply_to': 'jackson@gmail.com'
+                    'reply_to': 'jacksonkuya71@gmail.com'
                 }
             }),
             headers: {
@@ -150,4 +150,4 @@ function sendEmail(body) {
         })
         .then((response) => response.json())
         .then((json) => console.log(json));
-}
+};
