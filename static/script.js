@@ -106,3 +106,31 @@ function getAnxietySeverity(score) {
     return "Severe anxiety";
 }
 
+submitContactButton.addEventListener('click', function () {
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const message = document.getElementById('message').value;
+
+    localStorage.setItem('name', name);
+    localStorage.setItem('email', email);
+    localStorage.setItem('message', message);
+
+    // Prepare email body
+    let emailBody = `
+        Mental Health Form Results:
+        Depression: ${localStorage.getItem('depressionScore')} - ${localStorage.getItem('depressionSeverity')}
+        Anxiety: ${localStorage.getItem('anxietyScore')} - ${localStorage.getItem('anxietySeverity')}
+    `;
+
+    if (name || email || message) {
+        emailBody += `\n\nContact Details:\nName: ${name}\nEmail: ${email}\nMessage: ${message}`;
+    }
+
+    // Send email
+    sendEmail(emailBody);
+});
+
+
+
+
+
