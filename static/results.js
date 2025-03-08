@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const depressionScore = localStorage.getItem("depressionScore") || "N/A";
-    const depressionSeverity = localStorage.getItem("depressionSeverity") || "N/A";
-    const anxietyScore = localStorage.getItem("anxietyScore") || "N/A";
-    const anxietySeverity = localStorage.getItem("anxietySeverity") || "N/A";
+    const depressionScore = localStorage.getItem("depressionScore");
+    const depressionSeverity = localStorage.getItem("depressionSeverity");
+    const anxietyScore = localStorage.getItem("anxietyScore");
+    const anxietySeverity = localStorage.getItem("anxietySeverity");
 
     document.getElementById("depression-score").textContent =
         `Depression Score: ${depressionScore} - ${depressionSeverity}`;
