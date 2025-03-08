@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
             let emailBody = `Mental Health Form Results:\n\nDepression: ${depressionScore} - ${depressionSeverity}\nAnxiety: ${anxietyScore} - ${anxietySeverity}\n\nContact Details:\nName: ${name}\nEmail: ${email}\nMessage: ${message}`;
 
             // Send email
-            sendEmail("kuya@gmail.com", "User Contact Details", emailBody);
+            sendEmail("kuyajesee@proton.me", "User Contact Details", emailBody);
         });
     }
 });
@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
 // Function to send email using SMTP
 function sendEmail(to, subject, body) {
     Email.send({
-        SecureToken: "your-smtp-token",
+        SecureToken: "4397af6f-988e-4a14-a278-bdfa720780db",
         To: to,
         From: "healthyminds@iplatform.co.ke",
         Subject: subject,
