@@ -21,7 +21,6 @@ const questions = {
     ]
 };
 
-const formContainer = document.getElementById('form-container');
 const depressionQuestionsDiv = document.getElementById('depression-questions');
 const anxietyQuestionsDiv = document.getElementById('anxiety-questions');
 const mentalHealthForm = document.getElementById('mental-health-form');
@@ -43,7 +42,8 @@ function createQuestion(questionText, questionType, questionIndex) {
     for (let i = 0; i <= 3; i++) {
         const optionLabel = document.createElement('label');
         optionLabel.innerHTML = `
-            <input type="radio" name="${questionType}-${questionIndex}" value="${i}" required> ${i === 0 ? 'Not at all' : i === 1 ? 'Several days' : i === 2 ? 'More than half the days' : 'Nearly every day'}
+            <input type="radio" name="${questionType}-${questionIndex}" value="${i}" required> 
+            ${i === 0 ? 'Not at all' : i === 1 ? 'Several days' : i === 2 ? 'More than half the days' : 'Nearly every day'}
         `;
         optionsDiv.appendChild(optionLabel);
     }
@@ -52,34 +52,39 @@ function createQuestion(questionText, questionType, questionIndex) {
     return questionDiv;
 }
 
-questions.depression.forEach((question, index) => {
-    depressionQuestionsDiv.appendChild(createQuestion(question, 'depression', index));
-});
+document.addEventListener('DOMContentLoaded', function () {
+    questions.depression.forEach((question, index) => {
+        depressionQuestionsDiv.appendChild(createQuestion(question, 'depression', index));
+    });
 
-
-questions.anxiety.forEach((question, index) => {
-    anxietyQuestionsDiv.appendChild(createQuestion(question, 'anxiety', index));
+    questions.anxiety.forEach((question, index) => {
+        anxietyQuestionsDiv.appendChild(createQuestion(question, 'anxiety', index));
+    });
 });
 
 mentalHealthForm.addEventListener('submit', function (event) {
     event.preventDefault();
-
     let depressionScore = 0;
     let anxietyScore = 0;
 
     // Calculate depression score
     for (let i = 0; i < questions.depression.length; i++) {
-        depressionScore += parseInt(document.querySelector(`input[name="depression-${i}"]:checked`).value);
+        const selectedOption = document.querySelector(`input[name="depression-${i}"]:checked`);
+        if (selectedOption) {
+            depressionScore += parseInt(selectedOption.value);
+        }
     }
 
     // Calculate anxiety score
     for (let i = 0; i < questions.anxiety.length; i++) {
-        anxietyScore += parseInt(document.querySelector(`input[name="anxiety-${i}"]:checked`).value);
+        const selectedOption = document.querySelector(`input[name="anxiety-${i}"]:checked`);
+        if (selectedOption) {
+            anxietyScore += parseInt(selectedOption.value);
+        }
     }
 
     const depressionSeverity = getDepressionSeverity(depressionScore);
     const anxietySeverity = getAnxietySeverity(anxietyScore);
-
 
     // Store results and contact info in local storage
     localStorage.setItem('depressionScore', depressionScore);
@@ -116,11 +121,9 @@ submitContactButton.addEventListener('click', function () {
     localStorage.setItem('message', message);
 
     // Prepare email body
-    let emailBody = `
-        Mental Health Form Results:
-        Depression: ${localStorage.getItem('depressionScore')} - ${localStorage.getItem('depressionSeverity')}
-        Anxiety: ${localStorage.getItem('anxietyScore')} - ${localStorage.getItem('anxietySeverity')}
-    `;
+    let emailBody = `Mental Health Form Results:\n
+    Depression: ${localStorage.getItem('depressionScore')} - ${localStorage.getItem('depressionSeverity')}
+    Anxiety: ${localStorage.getItem('anxietyScore')} - ${localStorage.getItem('anxietySeverity')}`;
 
     if (name || email || message) {
         emailBody += `\n\nContact Details:\nName: ${name}\nEmail: ${email}\nMessage: ${message}`;
@@ -130,24 +133,24 @@ submitContactButton.addEventListener('click', function () {
     sendEmail(emailBody);
 });
 
-export function sendEmail(body) {
+function sendEmail(body) {
     fetch('https://api.emailjs.com/api/v1.0/email/send', {
-            method: 'POST',
-            body: JSON.stringify({
-                service_id: 'service_gvdt6vh',
-                template_id: 'template_m5x8t4q',
-                user_id: 'p_i3gJ9EuQtqhez8b',
-                template_params: {
-                    'from_name': 'jacksonkuya71@gmail.com',
-                    'to_name': 'kuyajesee@gmail.com',
-                    'message': body,
-                    'reply_to': 'jacksonkuya71@gmail.com'
-                }
-            }),
-            headers: {
-                'Content-type': 'application/json; charset=UTF-8',
-            },
-        })
-        .then((response) => response.json())
-        .then((json) => console.log(json));
-};
+        method: 'POST',
+        body: JSON.stringify({
+            service_id: 'service_gvdt6vh',
+            template_id: 'template_m5x8t4q',
+            user_id: 'p_i3gJ9EuQtqhez8b',
+            template_params: {
+                'from_name': 'jacksonkuya71@gmail.com',
+                'to_name': 'kuyajesee@gmail.com',
+                'message': body,
+                'reply_to': 'jacksonkuya71@gmail.com'
+            }
+        }),
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+        },
+    })
+    .then((response) => response.json())
+    .then((json) => console.log(json));
+}
