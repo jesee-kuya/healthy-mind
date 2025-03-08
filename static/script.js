@@ -106,7 +106,7 @@ document.addEventListener("DOMContentLoaded", function () {
 // Function to send email using SMTP
 function sendEmail(to, subject, body) {
     Email.send({
-        SecureToken: "Letsdohealth@254",
+        SecureToken: "4397af6f-988e-4a14-a278-bdfa720780db",
         To: to,
         From: "healthyminds@iplatform.co.ke",
         Subject: subject,
