@@ -69,22 +69,20 @@ document.addEventListener("DOMContentLoaded", function () {
             const depressionQuestions = document.querySelectorAll('input[name="depression"]:checked');
             const anxietyQuestions = document.querySelectorAll('input[name="anxiety"]:checked');
 
-            depressionQuestions.forEach(q => {
-                depressionScore += parseInt(q.value);
-            });
+            // Calculate depression score
+            for (let i = 0; i < questions.depression.length; i++) {
+                depressionScore += parseInt(document.querySelector(`input[name="depression-${i}"]:checked`).value);
+            }
 
-            anxietyQuestions.forEach(q => {
-                anxietyScore += parseInt(q.value);
-            });
+            // Calculate anxiety score
+            for (let i = 0; i < questions.anxiety.length; i++) {
+                anxietyScore += parseInt(document.querySelector(`input[name="anxiety-${i}"]:checked`).value);
+            }
 
             // Determine severity
-            let depressionSeverity = depressionScore >= 15 ? "Severe" :
-                                     depressionScore >= 10 ? "Moderate" :
-                                     depressionScore >= 5 ? "Mild" : "Minimal";
+            let depressionSeverity = getDepressionSeverity(depressionScore);
 
-            let anxietySeverity = anxietyScore >= 15 ? "Severe" :
-                                  anxietyScore >= 10 ? "Moderate" :
-                                  anxietyScore >= 5 ? "Mild" : "Minimal";
+            let anxietySeverity = getAnxietySeverity(anxietyScore);
 
             // Store results in localStorage
             localStorage.setItem("depressionScore", depressionScore);
@@ -108,10 +106,25 @@ document.addEventListener("DOMContentLoaded", function () {
 // Function to send email using SMTP
 function sendEmail(to, subject, body) {
     Email.send({
-        SecureToken: "mail.iplatform.co.ke",
+        SecureToken: "Letsdohealth@254",
         To: to,
         From: "healthyminds@iplatform.co.ke",
         Subject: subject,
         Body: body
     }).then(message => alert("Email sent successfully!"));
+}
+
+function getDepressionSeverity(score) {
+    if (score >= 0 && score <= 4) return "Minimal depression";
+    if (score >= 5 && score <= 9) return "Mild depression";
+    if (score >= 10 && score <= 14) return "Moderate depression";
+    if (score >= 15 && score <= 19) return "Moderately severe depression";
+    return "Severe depression";
+}
+
+function getAnxietySeverity(score) {
+    if (score >= 0 && score <= 4) return "Minimal anxiety";
+    if (score >= 5 && score <= 9) return "Mild anxiety";
+    if (score >= 10 && score <= 14) return "Moderate anxiety";
+    return "Severe anxiety";
 }
